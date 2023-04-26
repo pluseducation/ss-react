@@ -7,16 +7,16 @@ import { replace } from 'formik'
 export default defineConfig({
   plugins: [react()],
   base: "/ss-react/",
-  // server: {
-  //   proxy: {
-  //     '/api': {
-  //       target: 'http://27.254.123.203:8444',
-  //       secure : false,
-  //       changeOrigin: true,
-  //       rewrite: (path) => path.replace(/^\/api/, ''),
-  //     },
-  //   },
-  // },
+  server: {
+    proxy: {
+      '/api': {
+        target: 'http://27.254.123.203:8444',
+        secure : false,
+        changeOrigin: true,
+        rewrite: (path) => path.replace(/^\/api/, ''),
+      },
+    },
+  },
   esbuild: {
     loader: 'jsx',
   }, 
