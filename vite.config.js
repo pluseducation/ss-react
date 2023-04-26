@@ -6,6 +6,7 @@ import { replace } from 'formik'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: "/ss-react/",
   server: {
     proxy: {
       '/api': {
