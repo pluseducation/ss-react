@@ -41,18 +41,16 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
 const Sidebar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
-  const isNonMobile = useMediaQuery("(min-width:600px)");
+  const isBreakPoints = useMediaQuery(theme.breakpoints.down('sm'));
 
   const [isCollapsed, setIsCollapsed] = useState(false);
-  const [isToggle, setIsToggle] = useState(false);
   const [selected, setSelected] = useState(translate("global_dashboard"));
-
 
   return (
     <Box
       sx={{
         "& .pro-sidebar-inner": {
-          background: `${colors.primary[500]} !important`,
+          background: `${colors.blueAccent[900]} !important`,
         },
         "& .pro-icon-wrapper": {
           backgroundColor: "transparent !important",
@@ -69,22 +67,12 @@ const Sidebar = () => {
       }}
     >
 
-      {/* <IconButton sx={{ display: isToggle ? 'none' : 'block' }}
-        onClick={() => {
-          setIsCollapsed(!isCollapsed)
-          setIsToggle(!isToggle)
-        }}>
-        <MenuOutlinedIcon />
-      </IconButton> */}
-
-
-      <ProSidebar collapsed={isCollapsed} >
+      <ProSidebar collapsed={isCollapsed}>
         <Menu iconShape="square">
-          {/* LOGO AND MENU ICON */}
+
           <MenuItem
             onClick={() => {
-              setIsCollapsed(!isCollapsed)
-              setIsToggle(!isToggle)
+                setIsCollapsed(!isCollapsed)
             }}
             icon={isCollapsed ? <MenuOutlinedIcon /> : undefined}
             style={{
@@ -103,8 +91,7 @@ const Sidebar = () => {
                   ADMINIS
                 </Typography>
                 <IconButton onClick={() => {
-                  setIsCollapsed(!isCollapsed)
-                  setIsToggle(!isToggle)
+                    setIsCollapsed(!isCollapsed);
                 }}>
                   <MenuOutlinedIcon />
                 </IconButton>
@@ -155,7 +142,7 @@ const Sidebar = () => {
             />
             <Item
               title={translate("global_member")}
-              to="/invoices"
+              to="/member"
               icon={<HowToRegOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

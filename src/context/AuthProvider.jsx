@@ -1,4 +1,4 @@
-import { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect } from "react";
 import CryptoJS from 'crypto-js';
 const AuthContext = createContext({});
 const secretKey = 'e9fad54b-0383-424e-82d4-e2d523eceedf'
@@ -6,6 +6,7 @@ const secretKey = 'e9fad54b-0383-424e-82d4-e2d523eceedf'
 export const AuthProvider = ({ children }) => {
 
     const [auth, setAuth] = useLocalStorage("userData", {})
+    
 
     return (
         <AuthContext.Provider value={{ auth, setAuth }}>

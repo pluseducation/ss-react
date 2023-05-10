@@ -17,17 +17,17 @@ const ManageControl = ({ selectedId, loadValue_handle, delValue_handle }) => {
 
   return (
     <ButtonGroup>
-      <Button variant="outlined" endIcon={<AddCircleOutlineOutlinedIcon />} onClick={(e) => {
+      <Button endIcon={<AddCircleOutlineOutlinedIcon />} onClick={(e) => {
         loadValue_handle(null)
       }} >
         {translate("global_add")}
       </Button>
-      <Button variant="outlined" endIcon={<CheckCircleOutlinedIcon />} color="success" onClick={(e) => {
+      <Button endIcon={<CheckCircleOutlinedIcon />} color="success" onClick={(e) => {
         approve_onClick()
       }} >
         {translate("global_approve")}
       </Button>
-      <Button variant="outlined" endIcon={<DeleteOutlinedIcon />} color="error" onClick={(e) => {
+      <Button endIcon={<DeleteOutlinedIcon />} color="error" onClick={(e) => {
         if (selectedId) {
           confirm({
             title: translate("alert_confirm_title"),

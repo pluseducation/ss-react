@@ -6,14 +6,15 @@ import { replace } from 'formik'
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
-  base: "/ss-react/",
+  // base: "/ss-react/",
   server: {
     proxy: {
       '/api': {
+        // target: 'http://27.254.123.203:8444',
         target: 'http://27.254.123.203:8444',
         secure : false,
         changeOrigin: true,
-        rewrite: (path) => path.replace(/^\/api/, ''),
+        // rewrite: (path) => path.replace(/^\/api/, ''),
       },
     },
   },

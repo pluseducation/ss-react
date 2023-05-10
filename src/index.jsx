@@ -7,7 +7,7 @@ import { BrowserRouter } from "react-router-dom";
 
 ReactDOM.createRoot(document.getElementById('root')).render(
 
-    <BrowserRouter basename='/ss-react'>
+    <BrowserRouter>
       <AuthProvider>
         <App />
       </AuthProvider>

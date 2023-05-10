@@ -27,7 +27,6 @@ const RootAgent = () => {
 
     const [rootAgentBank, setRootAgentBank] = React.useState();
 
-
     const close_onclick = (e, reason) => {
         console.log(reason);
         if (reason && reason == "backdropClick")
@@ -42,8 +41,7 @@ const RootAgent = () => {
                     setValueList(res.data.data);
                 })
 
-            //axiosPrivate.get('/root-agent/view-rootagent-bank')
-            axiosPrivate.get('/account/bank-type')
+            axiosPrivate.get('/root-agent/view-rootagent-bank')
             .then(res => {
                 setRootAgentBank(res.data.data);
             })

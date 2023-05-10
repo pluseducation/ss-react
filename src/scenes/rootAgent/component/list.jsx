@@ -14,7 +14,7 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList }) => {
     const columns = [
         {
             field: "id",
-            flex: 1,
+            flex: 0.5,
             renderHeader: () => (
                 <strong>
                     {translate('rootagent_order')}
@@ -78,42 +78,42 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList }) => {
                 )
             }
         },
-        {
-            field: "root_agent_api_endpoint",
-            flex: 1,
-            renderHeader: () => (
-                <strong>
-                    {translate('rootagent_api_endpoint')}
-                </strong>
-            ),
-        },
-        {
-            field: "root_agent_api_client_name",
-            flex: 1,
-            renderHeader: () => (
-                <strong>
-                    {translate('rootagent_api_client_name')}
-                </strong>
-            ),
-        },
-        {
-            field: "root_agent_api_hash",
-            flex: 1,
-            renderHeader: () => (
-                <strong>
-                    {translate('rootagent_api_hash')}
-                </strong>
-            ),
-        },
-        {
-            field: "root_agent_api_key",
-            flex: 1,
-            renderHeader: () => (
-                <strong>
-                    {translate('rootagent_api_key')}
-                </strong>
-            ),
-        },
+        // {
+        //     field: "root_agent_api_endpoint",
+        //     flex: 1,
+        //     renderHeader: () => (
+        //         <strong>
+        //             {translate('rootagent_api_endpoint')}
+        //         </strong>
+        //     ),
+        // },
+        // {
+        //     field: "root_agent_api_client_name",
+        //     flex: 1,
+        //     renderHeader: () => (
+        //         <strong>
+        //             {translate('rootagent_api_client_name')}
+        //         </strong>
+        //     ),
+        // },
+        // {
+        //     field: "root_agent_api_hash",
+        //     flex: 1,
+        //     renderHeader: () => (
+        //         <strong>
+        //             {translate('rootagent_api_hash')}
+        //         </strong>
+        //     ),
+        // },
+        // {
+        //     field: "root_agent_api_key",
+        //     flex: 1,
+        //     renderHeader: () => (
+        //         <strong>
+        //             {translate('rootagent_api_key')}
+        //         </strong>
+        //     ),
+        // },
         
         {
             field: "status",
@@ -142,7 +142,7 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList }) => {
             ),
             renderCell: (params) => {
                 return (
-                    <Button variant="outlined" endIcon={<NoteAltOutlinedIcon />} onClick={(e) => {
+                    <Button endIcon={<NoteAltOutlinedIcon />} onClick={(e) => {
                         setId(params.id)
                         loadValue_handle(params.id)
                     }} >

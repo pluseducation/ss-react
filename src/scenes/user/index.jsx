@@ -128,12 +128,9 @@ const User = () => {
                 <ManageControl selectedId={selectedId} loadValue_handle={loadValue_handle} delValue_handle={delValue_handle}  ></ManageControl>
             </Box>
 
-            <div style={{ width: '100%' }}>
-                <div style={{ height: '75vh', width: '100%' }}>
-                    <List setId={setId} setSelectedId={setSelectedId} loadValue_handle={loadValue_handle} valueList={valueList} />
-                </div>
-            </div>
-
+            <Box display='flex' >
+                <List setId={setId} setSelectedId={setSelectedId} loadValue_handle={loadValue_handle} valueList={valueList} />
+            </Box>
             <Dialog
                 fullScreen={fullScreen}
                 open={toggle}

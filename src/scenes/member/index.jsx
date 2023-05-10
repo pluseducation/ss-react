@@ -13,7 +13,7 @@ import Header from "../../components/header";
 import useAxiosPrivate from "../../hook/useAxiosPrivate";
 
 
-const rootAgent = () => {
+const Member = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const fullScreen = useMediaQuery(theme.breakpoints.down('sm'));
@@ -26,7 +26,7 @@ const rootAgent = () => {
     const [value, setValue] = React.useState()
 
     const [memberBank, setMemberBank] = React.useState();
-    const [memberAgent, setMemberAgent] = React.useState();
+    const [memberAgency, setMemberAgency] = React.useState();
     const [memberRootagent, setMemberRootagent] = React.useState();
 
 
@@ -45,19 +45,16 @@ const rootAgent = () => {
                 })
 
             axiosPrivate.get('/member/view-member-bank')
-            //axiosPrivate.get('/account/bank-type')
             .then(res => {
                 setMemberBank(res.data.data);
             })
 
-            axiosPrivate.get('/member/view-member-rootagent')
-            //axiosPrivate.get('/account/bank-type')
-            .then(res => {
-                setMemberRootagent(res.data.data);
-            })
+            // axiosPrivate.get('/member/view-member-agency')
+            // .then(res => {
+            //     setMemberAgency(res.data.data);
+            // })
 
             axiosPrivate.get('/member/view-member-rootagent')
-            //axiosPrivate.get('/account/bank-type')
             .then(res => {
                 setMemberRootagent(res.data.data);
             })
@@ -182,11 +179,11 @@ const rootAgent = () => {
                 aria-labelledby="responsive-dialog-title"
             >
                 <DialogContent sx={{ padding: 0 }}>
-                    <Update setToggle={setToggle} memberBank={memberBank} memberAgent={memberAgent} memberRootagent={memberRootagent}  postValue_handle={postValue_handle} putValue_handle={putValue_handle} value={value} id={id} ></Update>
+                    <Update setToggle={setToggle} memberBank={memberBank} memberAgent={memberAgency} memberRootagent={memberRootagent}  postValue_handle={postValue_handle} putValue_handle={putValue_handle} value={value} id={id} ></Update>
                 </DialogContent>
             </Dialog>
         </Box>
     );
 };
 
-export default rootAgent;
+export default Member;

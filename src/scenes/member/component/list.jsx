@@ -14,7 +14,7 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList }) => {
     const columns = [
         {
             field: "id",
-            flex: 1,
+            flex: 0.5,
             renderHeader: () => (
                 <strong>
                     {translate('member_order')}
@@ -22,7 +22,7 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList }) => {
             ),
         },
         {
-            field: "root_agent_password",
+            field: "root_agent_id",
             flex: 1,
             renderHeader: () => (
                 <strong>
@@ -31,25 +31,7 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList }) => {
             ),
         },
         {
-            field: "root_agent_name",
-            flex: 1,
-            renderHeader: () => (
-                <strong>
-                    {translate('member_fname')}
-                </strong>
-            ),
-        },
-        {
-            field: "root_agent_username",
-            flex: 1,
-            renderHeader: () => (
-                <strong>
-                    {translate('member_lname')}
-                </strong>
-            ),
-        },
-        {
-            field: "root_agent_username_page",
+            field: "username",
             flex: 1,
             renderHeader: () => (
                 <strong>
@@ -58,7 +40,25 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList }) => {
             ),
         },
         {
-            field: "root_agent_username_page",
+            field: "fname",
+            flex: 1,
+            renderHeader: () => (
+                <strong>
+                    {translate('member_fname')}
+                </strong>
+            ),
+        },
+        {
+            field: "lname",
+            flex: 1,
+            renderHeader: () => (
+                <strong>
+                    {translate('member_lname')}
+                </strong>
+            ),
+        },
+        {
+            field: "telephone",
             flex: 1,
             renderHeader: () => (
                 <strong>
@@ -75,21 +75,21 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList }) => {
                     {translate('member_bank')}
                 </strong>
             ),
-            // renderCell: (params) => {
-            //     return (
-            //         <Box display='flex' columnGap={1}>
-            //             <Avatar id={params.row.id} src={params.row.bank.logoURL} sx={{ width: 24, height: 24 }} />
-            //             <Box padding='4px 0px 0px 0px'>
-            //             {params.row.bank.bank_eng_name}
-            //             </Box>
-            //         </Box>
+            renderCell: (params) => {
+                return (
+                    <Box display='flex' columnGap={1}>
+                        <Avatar id={params.row.id} src={params.row.bank.logoURL} sx={{ width: 24, height: 24 }} />
+                        <Box padding='4px 0px 0px 0px'>
+                        {params.row.bank.bank_short_eng_name}
+                        </Box>
+                    </Box>
 
 
-            //     )
-            // }
+                )
+            }
         },
         {
-            field: "root_agent_api_endpoint",
+            field: "bank_account_number",
             flex: 1,
             renderHeader: () => (
                 <strong>
@@ -98,7 +98,7 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList }) => {
             ),
         },
         {
-            field: "root_agent_api_client_name",
+            field: "recommender_id",
             flex: 1,
             renderHeader: () => (
                 <strong>

@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Loading from '../../../components/loading'
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../../theme";
-import { Button, useTheme } from "@mui/material";
+import { Button, Container, useTheme } from "@mui/material";
 import translate from "../../../i18nProvider/translate";
 import NoteAltOutlinedIcon from '@mui/icons-material/NoteAltOutlined';
 
@@ -14,7 +14,7 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList}) => {
     const columns = [
         {
             field: "id",
-            flex: 1,
+            flex: 0.5,
             renderHeader: () => (
                 <strong>
                     {translate('user_order')}
@@ -76,6 +76,7 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList}) => {
         {
             field: "userOperation",
             flex: 1,
+            sortable: false,
             renderHeader: () => (
                 <strong>
                     {translate('user_operation')}
@@ -83,7 +84,7 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList}) => {
             ),
             renderCell: () => {
                 return (
-                    <Button variant="outlined" color="secondary"  >
+                    <Button color="secondary"  >
                         {translate("user_operation")}
                     </Button>
                 )
@@ -100,7 +101,7 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList}) => {
             ),
             renderCell: (params) => {
                 return (
-                    <Button variant="outlined" endIcon={<NoteAltOutlinedIcon />} onClick={(e) => {
+                    <Button endIcon={<NoteAltOutlinedIcon />} onClick={(e) => {
                         setId(params.id)
                         loadValue_handle(params.id)
                     }} >
@@ -112,9 +113,8 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList}) => {
     ];
 
     return !valueList ? (<Loading />) : (
-
-        <DataGrid
-            getRowHeight={() => 'auto'}
+        <Container maxWidth={false} sx={{height: '75vh', paddingLeft: '0px !important', paddingRight: '0px !important'}}>
+            <DataGrid
             rows={valueList}
             columns={columns}
             initialState={{
@@ -129,9 +129,9 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList}) => {
             sx={{
                 "& .MuiDataGrid-columnHeaderCheckbox .MuiDataGrid-columnHeaderTitleContainer": {
                     display: "none"
-                }
+                },
+    
             }}
-            hideFooterSelectedRowCount
             rowSelectionModel={selectionModel}
             onRowSelectionModelChange={(selection) => {
                 if (selection.length > 1) {
@@ -146,7 +146,8 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList}) => {
             }}
             components={{ Toolbar: GridToolbar }}
         />
-
+        </Container>
+        
     );
 
 };
