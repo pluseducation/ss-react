@@ -21,6 +21,7 @@ export const Update = ({ setToggle, rootAgentBank, postValue_handle, putValue_ha
     const [validateForm, SetValidateForm] = React.useState();
 
     const handleFormSubmit = (values) => {
+        console.log(values)
         setDisabled(true);
 
         if (id) {
@@ -75,9 +76,6 @@ export const Update = ({ setToggle, rootAgentBank, postValue_handle, putValue_ha
                             gap="30px"
                             gridTemplateColumns="repeat(12, minmax(0, 1fr))"
                             m="20px"
-                            sx={{
-                                "& > div": { gridColumn: "span 12" },
-                            }}
                         >
                             <Typography
                                 variant="h3"
@@ -108,23 +106,10 @@ export const Update = ({ setToggle, rootAgentBank, postValue_handle, putValue_ha
                                 name="root_agent_username"
                                 error={!!touched.root_agent_username && !!errors.root_agent_username}
                                 helperText={touched.root_agent_username && errors.root_agent_username}
-                                sx={{ gridColumn: "span 12" }}
+                                sx={{ gridColumn: "span 6" }}
                             >
                             </TextField>
-
-                            <TextField
-                                type="text"
-                                label={translate('rootagent_username_page')}
-                                onBlur={handleBlur}
-                                onChange={handleChange}
-                                value={values.root_agent_username_page}
-                                name="root_agent_username_page"
-                                error={!!touched.root_agent_username_page && !!errors.root_agent_username_page}
-                                helperText={touched.root_agent_username_page && errors.root_agent_username_page}
-                                sx={{ gridColumn: "span 12" }}
-                            >
-                            </TextField>
-
+                            
                             <TextField
                                 type="text"
                                 label={translate('rootagent_password')}
@@ -134,33 +119,48 @@ export const Update = ({ setToggle, rootAgentBank, postValue_handle, putValue_ha
                                 name="root_agent_password"
                                 error={!!touched.root_agent_password && !!errors.root_agent_password}
                                 helperText={touched.root_agent_password && errors.root_agent_password}
-                                sx={{ gridColumn: "span 12" }}
+                                sx={{ gridColumn: "span 6" }}
                             >
                             </TextField>
 
-                            <FormControl fullWidth sx={{ gridColumn: "span 12" }} >
-                                <InputLabel id="demo-simple-select-label">{translate('rootagent_bank')}</InputLabel>
-                                <Select
-                                    labelId="demo-simple-select-label"
-                                    label={translate('rootagent_bank')}
-                                    value={values.bank_id}
-                                    name="bank_id"
-                                    onBlur={handleBlur}
-                                    onChange={handleChange}
-                                    error={!!touched.bank_id && !!errors.bank_id}
-                                >
-                                    <MenuItem value={-1} m={1} >{translate('global_select_empty')}</MenuItem>
-                                    {rootAgentBank?.map((obj, i) =>
-                                        <MenuItem key={i} value={obj.id}>
-                                            <Box display='flex' columnGap={2} >
-                                                <Avatar id={i} src={obj.logoURL} sx={{ width: 24, height: 24 }} />
-                                                {obj.bank_eng_name}
-                                            </Box>
-                                        </MenuItem>
-                                    )}
-                                </Select>
-                                <FormHelperText error>{touched.bank_id && errors.bank_id}</FormHelperText>
-                            </FormControl>
+                            <TextField
+                                type="text"
+                                label={translate('root_agent_member_username_prefix')}
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                value={values.member_username_prefix}
+                                name="member_username_prefix"
+                                error={!!touched.member_username_prefix && !!errors.member_username_prefix}
+                                helperText={touched.member_username_prefix && errors.member_username_prefix}
+                                sx={{ gridColumn: "span 6" }}
+                            >
+                            </TextField>
+                            
+                            <TextField
+                                type="text"
+                                label={translate('root_agent_member_fix_password')}
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                value={values.member_fixed_password}
+                                name="member_fixed_password"
+                                error={!!touched.member_fixed_password && !!errors.member_fixed_password}
+                                helperText={touched.member_fixed_password && errors.member_fixed_password}
+                                sx={{ gridColumn: "span 6" }}
+                            >
+                            </TextField>
+
+                            <TextField
+                                type="number"
+                                label={translate('root_agent_member_running_no')}
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                value={values.member_running_no}
+                                name="member_running_no"
+                                error={!!touched.member_running_no && !!errors.member_running_no}
+                                helperText={touched.member_running_no && errors.member_running_no}
+                                sx={{ gridColumn: "span 6" }}
+                            >
+                            </TextField>
 
                             <TextField
                                 type="text"
@@ -257,12 +257,15 @@ const phoneRegExp =
 const checkoutSchema = yup.object().shape({
     root_agent_name: yup.string().required("required"),
     root_agent_username: yup.string().required("required"),
-    root_agent_username_page: yup.string().required("required"),
     root_agent_password: yup.string().required("required"),
-    bank_id: yup.number()
+
+    member_username_prefix: yup.string().required("required"),
+    member_fixed_password: yup.string().required("required"),
+    member_running_no: yup.number()
         .integer()
         .min(0, 'required')
         .required("required"),
+
     root_agent_api_endpoint: yup.string().required("required"),
     root_agent_api_client_name: yup.string().required("required"),
     root_agent_api_hash: yup.string().required("required"),

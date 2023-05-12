@@ -11,7 +11,7 @@ import List from "./component/list";
 import Update from "./component/update";
 import Header from "../../components/header";
 import useAxiosPrivate from "../../hook/useAxiosPrivate";
-
+import { SetUsername } from "../../components/util"
 
 const Member = () => {
     const theme = useTheme();
@@ -45,19 +45,19 @@ const Member = () => {
                 })
 
             axiosPrivate.get('/member/view-member-bank')
-            .then(res => {
-                setMemberBank(res.data.data);
-            })
+                .then(res => {
+                    setMemberBank(res.data.data);
+                })
 
-            // axiosPrivate.get('/member/view-member-agency')
-            // .then(res => {
-            //     setMemberAgency(res.data.data);
-            // })
+            axiosPrivate.get('/member/view-member-agency')
+                .then(res => {
+                    setMemberAgency(res.data.data);
+                })
 
             axiosPrivate.get('/member/view-member-rootagent')
-            .then(res => {
-                setMemberRootagent(res.data.data);
-            })
+                .then(res => {
+                    setMemberRootagent(res.data.data);
+                })
 
         } catch (err) {
             console.error(err);
@@ -69,19 +69,33 @@ const Member = () => {
         setId(id);
         setToggle(true);
 
-        let fname = '';
-        let lname = '';
+        let root_agent_id = -1;
+        let agency_id = -1;
         let username = '';
         let password = '';
-        let agency_id = -1;
-        let root_agent_id = -1;
+        
+        if(memberRootagent && memberRootagent.length > 0){
+            username = 'Auto';//SetUsername(memberRootagent[0].member_username_prefix, memberRootagent[0].member_running_no)
+            password = memberRootagent[0].member_fixed_password
+            root_agent_id = memberRootagent[0].id
+        }
+
+        if(memberAgency && memberAgency.length > 0) {
+            agency_id = memberAgency[0].id
+        }
+
+        let fname = '';
+        let lname = '';
         let telephone = '';
         let line_id = '';
         let bank_id = -1;
         let bank_account_number = '';
-        let recommender_id = '';
+        let recommender_id = '1';
         let recommender_value = '';
         let status = 'A'
+
+        // set username and password
+
         if (id) {
             try {
                 axiosPrivate.get('/member/view-member-byId/' + id).then(res => {
@@ -99,16 +113,20 @@ const Member = () => {
                     recommender_id = res.data.data[0].recommender_id;
                     recommender_value = res.data.data[0].recommender_value;
                     status = res.data.data[0].status;
-                    
-                    setValue({ id,fname,lname,username,password,agency_id,root_agent_id,telephone,line_id
-                        ,bank_id,bank_account_number,recommender_id,recommender_value,status});
+
+                    setValue({
+                        id, fname, lname, username, password, agency_id, root_agent_id, telephone, line_id
+                        , bank_id, bank_account_number, recommender_id, recommender_value, status
+                    });
                 });
             } catch (err) {
                 console.error(err);
             }
         } else {
-            setValue({ id,fname,lname,username,password,agency_id,root_agent_id,telephone,line_id
-                ,bank_id,bank_account_number,recommender_id,recommender_value,status});
+            setValue({
+                id, fname, lname, username, password, agency_id, root_agent_id, telephone, line_id
+                , bank_id, bank_account_number, recommender_id, recommender_value, status
+            });
         }
     }
 
@@ -174,12 +192,14 @@ const Member = () => {
 
             <Dialog
                 fullScreen={fullScreen}
+                fullWidth
+                maxWidth="md"
                 open={toggle}
                 onClose={close_onclick}
                 aria-labelledby="responsive-dialog-title"
             >
                 <DialogContent sx={{ padding: 0 }}>
-                    <Update setToggle={setToggle} memberBank={memberBank} memberAgent={memberAgency} memberRootagent={memberRootagent}  postValue_handle={postValue_handle} putValue_handle={putValue_handle} value={value} id={id} ></Update>
+                    <Update setToggle={setToggle} memberBank={memberBank} memberAgency={memberAgency} memberRootagent={memberRootagent} postValue_handle={postValue_handle} putValue_handle={putValue_handle} value={value} id={id} ></Update>
                 </DialogContent>
             </Dialog>
         </Box>

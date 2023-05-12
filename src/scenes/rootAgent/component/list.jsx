@@ -39,45 +39,67 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList }) => {
                 </strong>
             ),
         },
+        // {
+        //     field: "root_agent_password",
+        //     flex: 1,
+        //     renderHeader: () => (
+        //         <strong>
+        //             {translate('rootagent_password')}
+        //         </strong>
+        //     ),
+        // },
+
         {
-            field: "root_agent_username_page",
+            field: "member_username_prefix",
             flex: 1,
             renderHeader: () => (
                 <strong>
-                    {translate('rootagent_username_page')}
+                    {translate('root_agent_member_username_prefix')}
                 </strong>
             ),
         },
+
         {
-            field: "root_agent_password",
+            field: "member_fixed_password",
             flex: 1,
             renderHeader: () => (
                 <strong>
-                    {translate('rootagent_password')}
+                    {translate('root_agent_member_fix_password')}
                 </strong>
             ),
         },
+
         {
-            field: "bank_id",
+            field: "member_running_no",
             flex: 1,
             renderHeader: () => (
                 <strong>
-                    {translate('rootagent_bank')}
+                    {translate('root_agent_member_running_no')}
                 </strong>
             ),
-            renderCell: (params) => {
-                return (
-                    <Box display='flex' columnGap={1}>
-                        <Avatar id={params.row.id} src={params.row.bank_detail.logoURL} sx={{ width: 24, height: 24 }} />
-                        <Box padding='4px 0px 0px 0px'>
-                        {params.row.bank_detail.bank_short_eng_name}
-                        </Box>
-                    </Box>
+        },
+       
+        // {
+        //     field: "bank_id",
+        //     flex: 1,
+        //     renderHeader: () => (
+        //         <strong>
+        //             {translate('rootagent_bank')}
+        //         </strong>
+        //     ),
+        //     renderCell: (params) => {
+        //         return (
+        //             <Box display='flex' columnGap={1}>
+        //                 <Avatar id={params.row.id} src={params.row.bank_detail.logoURL} sx={{ width: 24, height: 24 }} />
+        //                 <Box padding='4px 0px 0px 0px'>
+        //                 {params.row.bank_detail.bank_short_eng_name}
+        //                 </Box>
+        //             </Box>
 
 
-                )
-            }
-        },
+        //         )
+        //     }
+        // },
         // {
         //     field: "root_agent_api_endpoint",
         //     flex: 1,

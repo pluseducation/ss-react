@@ -4,6 +4,7 @@ import { Routes, Route } from "react-router-dom";
 import Topbar from "./scenes/global/Topbar";
 import Sidebar from "./scenes/global/Sidebar";
 import Member from './scenes/member';
+import Promotion from './scenes/promotion';
 import User from './scenes/user'
 import Login from './scenes/login';
 import Agency from './scenes/agency';
@@ -38,6 +39,7 @@ function App() {
                   {/* we want to protect these routes */}
                   {/* <Route path="/" element={<Dashboard />} /> */}
                   <Route path="/member" element={<Member />} />
+                  <Route path="/promotion" element={<Promotion />} />
                   <Route path="/user" element={<User />} />
                   <Route path="/login" element={<Login />} />
                   <Route path="/agency" element={<Agency />} />

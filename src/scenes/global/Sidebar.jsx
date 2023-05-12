@@ -150,7 +150,7 @@ const Sidebar = () => {
 
             <Item
               title={translate("global_promotion")}
-              to="/form"
+              to="/promotion"
               icon={<SellOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}

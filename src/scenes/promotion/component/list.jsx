@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import Loading from '../../../components/loading'
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../../theme";
-import { Button, Box, Avatar, useTheme } from "@mui/material";
+import { Button, useTheme } from "@mui/material";
 import translate from "../../../i18nProvider/translate";
 import NoteAltOutlinedIcon from '@mui/icons-material/NoteAltOutlined';
 
-const List = ({ setId, setSelectedId, loadValue_handle, valueList }) => {
+const List = ({ setId, setSelectedId, loadValue_handle, valueList}) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const [selectionModel, setSelectionModel] = useState([]);
@@ -14,103 +14,59 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList }) => {
     const columns = [
         {
             field: "id",
-            flex: 0.5,
+            flex: 1,
             renderHeader: () => (
                 <strong>
-                    {translate('member_order')}
+                    {translate('promotion_order')}
                 </strong>
             ),
         },
         {
-            field: "root_agent_id",
+            field: "promotion_name",
             flex: 1,
             renderHeader: () => (
                 <strong>
-                    {translate('member_root_agent')}
+                    {translate('promotion_name')}
                 </strong>
             ),
         },
         {
-            field: "username",
+            field: "promotion_image",
             flex: 1,
             renderHeader: () => (
                 <strong>
-                    {translate('member_username')}
-                </strong>
-            ),
-        },
-        {
-            field: "fname",
-            flex: 1,
-            renderHeader: () => (
-                <strong>
-                    {translate('member_fname')}
-                </strong>
-            ),
-        },
-        {
-            field: "lname",
-            flex: 1,
-            renderHeader: () => (
-                <strong>
-                    {translate('member_lname')}
-                </strong>
-            ),
-        },
-        {
-            field: "telephone",
-            flex: 1,
-            renderHeader: () => (
-                <strong>
-                    {translate('member_telephone')}
-                </strong>
-            ),
-        },
-     
-        {
-            field: "bank_id",
-            flex: 1,
-            renderHeader: () => (
-                <strong>
-                    {translate('member_bank')}
-                </strong>
-            ),
-            renderCell: (params) => {
-                return (
-                    <Box display='flex' columnGap={1}>
-                        <Avatar id={params.row.id} src={params.row.bank_detail.logoURL} sx={{ width: 24, height: 24 }} />
-                        <Box padding='4px 0px 0px 0px'>
-                        {params.row.bank_detail.bank_short_eng_name}
-                        </Box>
-                    </Box>
-                )
-            }
-        },
-        {
-            field: "bank_account_number",
-            flex: 1,
-            renderHeader: () => (
-                <strong>
-                    {translate('member_bank_account_number')}
-                </strong>
-            ),
-        },
-        {
-            field: "recommender_id",
-            flex: 1,
-            renderHeader: () => (
-                <strong>
-                    {translate('member_recommender')}
+                    {translate('promotion_image')}
                 </strong>
             ),
             renderCell: (params) => {
                 return (<span>
-                    {params.row.recommender_id == '1' ? translate('member_recommender_1') : ''}
-                    {params.row.recommender_id == '2' ? translate('member_recommender_2') : ''}
-                    {params.row.recommender_id == '3' ? translate('member_recommender_3') : ''}
-                    {params.row.recommender_id == '4' ? translate('member_recommender_4') : ''}
-                    {params.row.recommender_id == '5' ? translate('member_recommender_5') : ''}
+                    {params.row.commission_type_detail.commission_type_detail}
                 </span>
+                )
+            }
+        },
+        {
+            field: "promotion_desc",
+            flex: 1,
+            renderHeader: () => (
+                <strong>
+                    {translate('promotion_desc')}
+                </strong>
+            ),
+        },
+        {
+            field: "promotion_condition_deposit",
+            flex: 1,
+            renderHeader: () => (
+                <strong>
+                    {translate('promotion_condition')}
+                </strong>
+            ),
+            renderCell: (params) => {
+                return (<span>
+                     {params.row.status == 'A' ? translate('global_status_active') : '' }
+                     {params.row.status == 'I' ? translate('global_status_inactive') : '' }
+                    </span> 
                 )
             }
         },
@@ -119,14 +75,14 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList }) => {
             flex: 1,
             renderHeader: () => (
                 <strong>
-                    {translate('rootagent_status')}
+                    {translate('agency_status')}
                 </strong>
             ),
             renderCell: (params) => {
                 return (<span>
-                    {params.row.status == 'A' ? translate('global_status_active') : ''}
-                    {params.row.status == 'I' ? translate('global_status_inactive') : ''}
-                </span>
+                     {params.row.status == 'A' ? translate('global_status_active') : '' }
+                     {params.row.status == 'I' ? translate('global_status_inactive') : '' }
+                    </span> 
                 )
             }
         },
