@@ -25,9 +25,9 @@ Provider.propTypes = {
   locale: PropTypes.oneOf(Object.values(LOCALES)),
 };
 
-Provider.defaultProps = {
-  locale: LOCALES.ENGLISH,
-};
+// Provider.defaultProps = {
+//   locale: LOCALES.ENGLISH,
+// };
 
 // export const LocalesModeContext = createContext({
 //   toggleLocalesMode: () => {},

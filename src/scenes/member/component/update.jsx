@@ -251,7 +251,7 @@ export const Update = ({ setToggle, memberBank, memberAgency, memberRootagent, p
                                     aria-labelledby="demo-row-radio-buttons-group-label"
                                     onBlur={handleBlur}
                                     onChange={(e) => {
-                                        if (e.target.value == 4) {
+                                        if (e.target.value == 5) {
                                             setOther(true)
                                         } else {
                                             setOther(false)

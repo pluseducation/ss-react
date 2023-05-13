@@ -29,6 +29,12 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList }) => {
                     {translate('member_root_agent')}
                 </strong>
             ),
+            renderCell: (params) => {
+                return (<span>
+                    {params.row.root_agent_detail.root_agent_name}
+                </span>
+                )
+            }
         },
         {
             field: "username",
@@ -95,6 +101,7 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList }) => {
                 </strong>
             ),
         },
+        
         {
             field: "recommender_id",
             flex: 1,
@@ -141,7 +148,7 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList }) => {
             ),
             renderCell: (params) => {
                 return (
-                    <Button variant="outlined" endIcon={<NoteAltOutlinedIcon />} onClick={(e) => {
+                    <Button endIcon={<NoteAltOutlinedIcon />} onClick={(e) => {
                         setId(params.id)
                         loadValue_handle(params.id)
                     }} >

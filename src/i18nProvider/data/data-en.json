@@ -1,9 +1,9 @@
 {
-    "gobal_startdate":"Start Date",
-    "gobal_enddate":"End Date",
-    "gobal_starttime":"Start Time",
-    "gobal_endtime":"End Time",
-    "gobal_search":"Search",
+    "gobal_startdate": "Start Date",
+    "gobal_enddate": "End Date",
+    "gobal_starttime": "Start Time",
+    "gobal_endtime": "End Time",
+    "gobal_search": "Search",
     "global_add": "Add",
     "global_save": "Save",
     "global_close": "Close",
@@ -25,17 +25,13 @@
     "global_role": "Role",
     "global_operation": "Operation",
     "global_loading": "Loading...",
-
     "global_select_empty": "--- please select ---",
     "global_status_active": "Active",
     "global_status_inactive": "Inactive",
-
-
     "alert_confirm_title": "Confirm",
     "alert_info_title": "Info",
     "alert_delete_selected": "Please selected data",
     "alert_delete_confirm_description": "Do you want delete data ?",
-
     "dash_title": "DASHBOARD",
     "dash_description": "Welcome to your dashboard",
     "dash_bank_system": "System Balance",
@@ -47,18 +43,15 @@
     "dash_deposittrx_title": "Deposit Transaction",
     "dash_withdrawtrx_title": "Withdraw Transaction",
     "dash_depositreport_title": "Transaction Report",
-    
     "trx_title": "TRANSACTION",
     "trx_description": "Welcome to your transaction",
     "trx_tab_deposit_title": "Deposit List",
     "trx_tab_withdraw_title": "Withdraw List",
     "trx_tab_transfer_title": "Transfer List",
     "trx_tab_transfer_form": "Test Popup",
-
     "set_title": "SETTING",
     "set_description": "Welcome to your setting",
-    "set_general_title" : "General Setting",
-
+    "set_general_title": "General Setting",
     "user_title": "USER",
     "user_description": "Welcome to your user",
     "user_update_title": "ADD/EDIT USER",
@@ -72,7 +65,6 @@
     "user_ip": "IP",
     "user_status": "Status",
     "user_operation": "Operation",
-
     "account_title": "BANK ACCOUNT",
     "account_escription": "Welcome to your bank account",
     "account_update_title": "ADD/EDIT BANK ACCOUNT",
@@ -82,7 +74,6 @@
     "account_account_number": "Account Number",
     "account_account_type": "Account Type",
     "account_status": "Status",
-
     "agency_title": "AGENCY",
     "agency_escription": "Welcome to your agency",
     "agency_update_title": "ADD/EDIT AGENCY",
@@ -92,7 +83,6 @@
     "agency_commission_send_company": "Commission send company",
     "agency_commission_type": "Commission Type",
     "agency_status": "Status",
-
     "rootagent_title": "ROOT AGENT",
     "rootagent_description": "Welcome to your root agent",
     "rootagent_update_title": "ADD/EDIT ROOT AGENT",
@@ -108,7 +98,6 @@
     "rootagent_api_hash": "Api hash",
     "rootagent_api_key": "Api Key",
     "rootagent_status": "Status",
-
     "member_title": "MEMBER",
     "member_description": "Welcome to your member",
     "member_update_title": "ADD/EDIT MEMBER",
@@ -130,7 +119,6 @@
     "member_recommender_4": "Member",
     "member_recommender_5": "Other",
     "member_status": "Status",
-
     "promotion_title": "PROMOTION",
     "promotion_description": "Welcome to your promotion",
     "promotion_update_title": "ADD/EDIT PROMOTION",

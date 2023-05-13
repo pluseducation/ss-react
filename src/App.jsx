@@ -21,8 +21,7 @@ function App() {
 
   const [theme, colorMode] = useMode();
   const [isSidebar, setIsSidebar] = useState(true);
-  const [locale, setLocale] = useState(LOCALES.ENGLISH);
-
+  const [locale, setLocale] = useState(LOCALES.THAILAND);
 
   return (
     <ColorModeContext.Provider value={colorMode}>
@@ -33,7 +32,7 @@ function App() {
             <div className="app">
               <Sidebar isSidebar={isSidebar} />
               <main className="content">
-                <Topbar setIsSidebar={setIsSidebar} />
+                <Topbar locale={locale} setLocale={setLocale} />
                 <Routes>
 
                   {/* we want to protect these routes */}

@@ -90,7 +90,7 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList}) => {
             ),
             renderCell: (params) => {
                 return (
-                    <Button variant="outlined" endIcon={<NoteAltOutlinedIcon />} onClick={(e) => {
+                    <Button endIcon={<NoteAltOutlinedIcon />} onClick={(e) => {
                         setId(params.id)
                         loadValue_handle(params.id)
                     }} >
