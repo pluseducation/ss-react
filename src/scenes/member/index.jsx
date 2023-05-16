@@ -56,7 +56,7 @@ const Member = () => {
 
             axiosPrivate.get('/member/view-member-rootagent')
                 .then(res => {
-                    setMemberRootagent(res.data.data);
+                    setMemberRootagent([res.data.data]);
                 })
 
         } catch (err) {
@@ -75,8 +75,8 @@ const Member = () => {
         let password = '';
         
         if(memberRootagent && memberRootagent.length > 0){
-            username = 'Auto';//SetUsername(memberRootagent[0].member_username_prefix, memberRootagent[0].member_running_no)
-            password = memberRootagent[0].member_fixed_password
+            username = 'Auto'//SetUsername(memberRootagent[0].member_username_prefix, memberRootagent[0].member_running_no)
+            password = 'Auto'//memberRootagent[0].member_fixed_password
             root_agent_id = memberRootagent[0].id
         }
 

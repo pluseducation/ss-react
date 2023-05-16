@@ -28,6 +28,8 @@ export const Update = ({ setToggle, postValue_handle, putValue_handle, value, id
     const [isTimeSetting, setIsTimeSetting] = React.useState();
 
     const handleFormSubmit = (values) => {
+
+        console.log(values)
         setDisabled(true);
 
         if (id) {
@@ -90,7 +92,9 @@ export const Update = ({ setToggle, postValue_handle, putValue_handle, value, id
                                 sx={{ m: "0 0 5px 0", gridColumn: "span 12" }}
                             >{translate('promotion_update_title')}</Typography>
 
-                            <UploadImage />
+                            <UploadImage url={values.url} />
+                            {/* <FormHelperText error>{touched.image_id && errors.image_id}</FormHelperText> */}
+
                             <TextField
                                 type="text"
                                 label={translate('promotion_name')}
@@ -109,10 +113,10 @@ export const Update = ({ setToggle, postValue_handle, putValue_handle, value, id
                                 label={translate('promotion_desc')}
                                 onBlur={handleBlur}
                                 onChange={handleChange}
-                                value={values.commission}
-                                name="commission"
-                                error={!!touched.commission && !!errors.commission}
-                                helperText={touched.commission && errors.commission}
+                                value={values.detail}
+                                name="detail"
+                                error={!!touched.detail && !!errors.detail}
+                                helperText={touched.detail && errors.detail}
                                 sx={{ gridColumn: "span 12" }}
                             >
                             </TextField>
@@ -122,15 +126,13 @@ export const Update = ({ setToggle, postValue_handle, putValue_handle, value, id
                                 label={translate('promotion_link')}
                                 onBlur={handleBlur}
                                 onChange={handleChange}
-                                value={values.commission_send_company}
-                                name="commission_send_company"
-                                error={!!touched.commission_send_company && !!errors.commission_send_company}
-                                helperText={touched.commission_send_company && errors.commission_send_company}
+                                value={values.promotion_link}
+                                name="promotion_link"
+                                error={!!touched.promotion_link && !!errors.promotion_link}
+                                helperText={touched.promotion_link && errors.promotion_link}
                                 sx={{ gridColumn: "span 12" }}
                             >
                             </TextField>
-
-
 
                             <FormControl sx={{ gridColumn: "span 12" }}>
                                 <FormLabel id="demo-row-radio-buttons-group-label">{translate('promotion_member_type')}</FormLabel>
@@ -138,14 +140,14 @@ export const Update = ({ setToggle, postValue_handle, putValue_handle, value, id
                                     aria-labelledby="demo-row-radio-buttons-group-label"
                                     onBlur={handleBlur}
                                     onChange={handleChange}
-                                    value={values.promotion_member_type}
-                                    name="promotion_member_type"
-                                    error={!!touched.promotion_member_type && !!errors.promotion_member_type}
-                                    helperText={touched.promotion_member_type && errors.promotion_member_type}
+                                    value={values.member_type_id}
+                                    name="member_type_id"
+                                    error={!!touched.member_type_id && !!errors.member_type_id}
+                                    helperText={touched.member_type_id && errors.member_type_id}
                                 >
-                                    <FormControlLabel value='1' control={<Radio />} label={translate('promotion_member_type_1')} />
-                                    <FormControlLabel value='2' control={<Radio />} label={translate('promotion_member_type_2')} />
-                                    <FormControlLabel value='3' control={<Radio />} label={translate('promotion_member_type_3')} />
+                                    <FormControlLabel value={1} control={<Radio />} label={translate('promotion_member_type_1')} />
+                                    <FormControlLabel value={2} control={<Radio />} label={translate('promotion_member_type_2')} />
+                                    <FormControlLabel value={3} control={<Radio />} label={translate('promotion_member_type_3')} />
                                 </RadioGroup>
                             </FormControl>
                             <FormControl sx={{ gridColumn: "span 6" }}>
@@ -154,13 +156,13 @@ export const Update = ({ setToggle, postValue_handle, putValue_handle, value, id
                                     aria-labelledby="demo-row-radio-buttons-group-label"
                                     onBlur={handleBlur}
                                     onChange={handleChange}
-                                    value={values.promotion_type}
-                                    name="promotion_type"
-                                    error={!!touched.promotion_type && !!errors.promotion_type}
-                                    helperText={touched.promotion_type && errors.promotion_type}
+                                    value={values.bonus_type_id}
+                                    name="bonus_type_id"
+                                    error={!!touched.bonus_type_id && !!errors.bonus_type_id}
+                                    helperText={touched.bonus_type_id && errors.bonus_type_id}
                                 >
-                                    <FormControlLabel value='1' control={<Radio />} label={translate('promotion_type_1')} />
-                                    <FormControlLabel value='2' control={<Radio />} label={translate('promotion_type_2')} />
+                                    <FormControlLabel value={1} control={<Radio />} label={translate('promotion_type_1')} />
+                                    <FormControlLabel value={2} control={<Radio />} label={translate('promotion_type_2')} />
                                 </RadioGroup>
                             </FormControl>
                             <TextField
@@ -168,10 +170,10 @@ export const Update = ({ setToggle, postValue_handle, putValue_handle, value, id
                                 label={translate('promotion_value')}
                                 onBlur={handleBlur}
                                 onChange={handleChange}
-                                value={values.promotion_value}
-                                name="promotion_value"
-                                error={!!touched.promotion_value && !!errors.promotion_value}
-                                helperText={touched.promotion_value && errors.promotion_value}
+                                value={values.bonus_amount}
+                                name="bonus_amount"
+                                error={!!touched.bonus_amount && !!errors.bonus_amount}
+                                helperText={touched.bonus_amount && errors.bonus_amount}
                                 sx={{ gridColumn: "span 6" }}
                             >
                             </TextField>
@@ -190,9 +192,9 @@ export const Update = ({ setToggle, postValue_handle, putValue_handle, value, id
                                 onBlur={handleBlur}
                                 onChange={handleChange}
                                 value={values.promotion_condition_deposit}
-                                name="promotion_condition_deposit"
-                                error={!!touched.promotion_condition_deposit && !!errors.promotion_condition_deposit}
-                                helperText={touched.promotion_condition_deposit && errors.promotion_condition_deposit}
+                                name="minimum_deposit"
+                                error={!!touched.minimum_deposit && !!errors.minimum_deposit}
+                                helperText={touched.minimum_deposit && errors.minimum_deposit}
                                 sx={{ gridColumn: "span 6" }}
                             >
                             </TextField>
@@ -201,10 +203,10 @@ export const Update = ({ setToggle, postValue_handle, putValue_handle, value, id
                                 label={translate('promotion_condition_bonus')}
                                 onBlur={handleBlur}
                                 onChange={handleChange}
-                                value={values.promotion_condition_bonus}
-                                name="promotion_condition_bonus"
-                                error={!!touched.promotion_condition_bonus && !!errors.promotion_condition_bonus}
-                                helperText={touched.promotion_condition_bonus && errors.promotion_condition_bonus}
+                                value={values.maximum_bonus}
+                                name="maximum_bonus"
+                                error={!!touched.maximum_bonus && !!errors.maximum_bonus}
+                                helperText={touched.maximum_bonus && errors.maximum_bonus}
                                 sx={{ gridColumn: "span 6" }}
                             >
                             </TextField>
@@ -213,10 +215,10 @@ export const Update = ({ setToggle, postValue_handle, putValue_handle, value, id
                                 label={translate('promotion_condition_count')}
                                 onBlur={handleBlur}
                                 onChange={handleChange}
-                                value={values.promotion_condition_count}
-                                name="promotion_condition_count"
-                                error={!!touched.promotion_condition_count && !!errors.promotion_condition_count}
-                                helperText={touched.promotion_condition_count && errors.promotion_condition_count}
+                                value={values.bonus_time_per_day}
+                                name="bonus_time_per_day"
+                                error={!!touched.bonus_time_per_day && !!errors.bonus_time_per_day}
+                                helperText={touched.bonus_time_per_day && errors.bonus_time_per_day}
                                 sx={{ gridColumn: "span 6" }}
                             >
                             </TextField>
@@ -225,10 +227,10 @@ export const Update = ({ setToggle, postValue_handle, putValue_handle, value, id
                                 label={translate('promotion_condition_turnover')}
                                 onBlur={handleBlur}
                                 onChange={handleChange}
-                                value={values.promotion_condition_turnover}
-                                name="promotion_condition_turnover"
-                                error={!!touched.promotion_condition_turnover && !!errors.promotion_condition_turnover}
-                                helperText={touched.promotion_condition_turnover && errors.promotion_condition_turnover}
+                                value={values.turnover}
+                                name="turnover"
+                                error={!!touched.turnover && !!errors.turnover}
+                                helperText={touched.turnover && errors.turnover}
                                 sx={{ gridColumn: "span 6" }}
                             >
                             </TextField>
@@ -239,12 +241,12 @@ export const Update = ({ setToggle, postValue_handle, putValue_handle, value, id
                                     aria-labelledby="demo-row-radio-buttons-group-label"
                                     onBlur={handleBlur}
                                     onChange={handleChange}
-                                    value={values.promotion_daily_type}
-                                    name="promotion_daily_type"
-                                    error={!!touched.promotion_daily_type && !!errors.promotion_daily_type}
-                                    helperText={touched.promotion_daily_type && errors.promotion_daily_type}
+                                    value={values.bonus_opendate_type_id}
+                                    name="bonus_opendate_type_id"
+                                    error={!!touched.bonus_opendate_type_id && !!errors.bonus_opendate_type_id}
+                                    helperText={touched.bonus_opendate_type_id && errors.bonus_opendate_type_id}
                                 >
-                                    <FormControlLabel value='1' control={<Radio />} label={translate('promotion_daily_type_1')} />
+                                    <FormControlLabel value={1} control={<Radio />} label={translate('promotion_daily_type_1')} />
                                 </RadioGroup>
                             </FormControl>
                             <FormControl sx={{ gridColumn: "span 6" }}>
@@ -253,51 +255,49 @@ export const Update = ({ setToggle, postValue_handle, putValue_handle, value, id
                                     aria-labelledby="demo-row-radio-buttons-group-label"
                                     onBlur={handleBlur}
                                     onChange={(e) => {
-                                        if(e.target.value == 2) {
+                                        if (e.target.value == 2) {
                                             setIsTimeSetting(true)
                                         } else {
                                             setIsTimeSetting(false)
                                         }
                                         handleChange(e)
                                     }}
-                                    value={values.promotion_time_type}
-                                    name="promotion_time_type"
-                                    error={!!touched.promotion_time_type && !!errors.promotion_time_type}
-                                    helperText={touched.promotion_time_type && errors.promotion_time_type}
+                                    value={values.bonus_opentime_type_id}
+                                    name="bonus_opentime_type_id"
+                                    error={!!touched.bonus_opentime_type_id && !!errors.bonus_opentime_type_id}
+                                    helperText={touched.bonus_opentime_type_id && errors.bonus_opentime_type_id}
                                 >
-                                    <FormControlLabel value='1' control={<Radio />} label={translate('promotion_time_type_1')} />
-                                    <FormControlLabel value='2' control={<Radio />} label={translate('promotion_time_type_2')} />
+                                    <FormControlLabel value={1} control={<Radio />} label={translate('promotion_time_type_1')} />
+                                    <FormControlLabel value={2} control={<Radio />} label={translate('promotion_time_type_2')} />
                                 </RadioGroup>
 
                             </FormControl>
+                            
+                            <TextField
+                                type="time"
+                                label={translate('gobal_starttime')}
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                value={values.bonus_opentime_start}
+                                name="bonus_opentime_start"
+                                error={!!touched.bonus_opentime_start && !!errors.bonus_opentime_start}
+                                helperText={touched.bonus_opentime_start && errors.bonus_opentime_start}
+                                sx={{ gridColumn: "span 6" }}
+                            >
+                            </TextField>
 
-                            <Box sx={{ gridColumn: "span 12", display: isTimeSetting ? 'block': 'none' }}>
-                                <LocalizationProvider dateAdapter={AdapterDayjs}>
-                                    <DemoContainer components={['TimePicker']} >
-                                        <TimeField format='HH:mm'
-                                         label={translate("gobal_starttime")} 
-                                         onBlur={handleBlur}
-                                         onChange={handleChange}
-                                         value={values.promotion_start_time}
-                                         name="promotion_start_time"
-                                         error={!!touched.promotion_start_time && !!errors.promotion_start_time}
-                                         helperText={touched.promotion_start_time && errors.promotion_start_time}
-                                         sx={{ minWidth: "50px" }}
-                                        />
-                                        <TimeField format='HH:mm'
-                                        label={translate("gobal_endtime")} 
-                                        onBlur={handleBlur}
-                                        onChange={handleChange}
-                                        value={values.promotion_end_time}
-                                        name="promotion_end_time"
-                                        error={!!touched.promotion_end_time && !!errors.promotion_end_time}
-                                        helperText={touched.promotion_end_time && errors.promotion_end_time}
-                                        sx={{ minWidth: "50px" }}
-                                        />
-                                    </DemoContainer>
-                                </LocalizationProvider>
-                            </Box>
-
+                            <TextField
+                                type="time"
+                                label={translate('gobal_endtime')}
+                                onBlur={handleBlur}
+                                onChange={handleChange}
+                                value={values.bonus_opentime_end}
+                                name="bonus_opentime_end"
+                                error={!!touched.bonus_opentime_end && !!errors.bonus_opentime_end}
+                                helperText={touched.bonus_opentime_end && errors.bonus_opentime_end}
+                                sx={{ gridColumn: "span 6" }}
+                            >
+                            </TextField>
 
                             <FormControl fullWidth sx={{ gridColumn: "span 12" }} >
                                 <InputLabel id="demo-simple-select-label">{translate('promotion_status')}</InputLabel>
@@ -338,24 +338,35 @@ export const Update = ({ setToggle, postValue_handle, putValue_handle, value, id
     )
 };
 
-let patternTwoDigisAfterComma = /^\d+(\.\d{0,2})?$/;
-
 const checkoutSchema = yup.object().shape({
-    // name: yup.string().required("required"),
-    // commission: yup
-    //     .string()
-    //     .matches(patternTwoDigisAfterComma, "Commission is not valid")
-    //     .required("required"),
+    name: yup.string().required("required"),
+    detail: yup.string().required("required"),
+    bonus_amount: yup.string().required("required"),
+    minimum_deposit: yup.string().required("required"),
+    maximum_bonus: yup.string().required("required"),
+    bonus_time_per_day: yup.string().required("required"),
+    turnover: yup.string().required("required"),
 
-    // commission_send_company: yup
-    //     .string()
-    //     .matches(patternTwoDigisAfterComma, "Commission send company is not valid")
-    //     .required("required"),
-
-    // agency_commission_type_id: yup.number()
-    //     .integer()
-    //     .min(0, 'required')
-    //     .required("required"),
+    member_type_id: yup.number()
+        .integer()
+        .min(0, 'required')
+        .required("required"),
+    bonus_type_id: yup.number()
+        .integer()
+        .min(0, 'required')
+        .required("required"),
+    bonus_opendate_type_id: yup.number()
+        .integer()
+        .min(0, 'required')
+        .required("required"),
+    bonus_opentime_type_id: yup.number()
+        .integer()
+        .min(0, 'required')
+        .required("required"),
+    image_id: yup.number()
+        .integer()
+        .min(0, 'required')
+        .required("required"),
 });
 
 

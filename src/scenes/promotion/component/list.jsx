@@ -2,11 +2,12 @@ import { useEffect, useState } from "react";
 import Loading from '../../../components/loading'
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../../theme";
-import { Button, useTheme } from "@mui/material";
+import { Box, Button, useTheme } from "@mui/material";
 import translate from "../../../i18nProvider/translate";
 import NoteAltOutlinedIcon from '@mui/icons-material/NoteAltOutlined';
+import { Padding } from "@mui/icons-material";
 
-const List = ({ setId, setSelectedId, loadValue_handle, valueList}) => {
+const List = ({ setId, setSelectedId, loadValue_handle, valueList }) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const [selectionModel, setSelectionModel] = useState([]);
@@ -22,7 +23,7 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList}) => {
             ),
         },
         {
-            field: "promotion_name",
+            field: "name",
             flex: 1,
             renderHeader: () => (
                 <strong>
@@ -31,7 +32,7 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList}) => {
             ),
         },
         {
-            field: "promotion_image",
+            field: "image_id",
             flex: 1,
             renderHeader: () => (
                 <strong>
@@ -39,14 +40,15 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList}) => {
                 </strong>
             ),
             renderCell: (params) => {
-                return (<span>
-                    {params.row.commission_type_detail.commission_type_detail}
-                </span>
+                return (
+                    <Box p='5px'>
+                        <img width='100%' height='auto' src={params.row.image.image} ></img>
+                    </Box>
                 )
             }
         },
         {
-            field: "promotion_desc",
+            field: "detail",
             flex: 1,
             renderHeader: () => (
                 <strong>
@@ -55,18 +57,21 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList}) => {
             ),
         },
         {
-            field: "promotion_condition_deposit",
-            flex: 1,
+            field: "minimum_deposit",
+            flex: 2,
             renderHeader: () => (
                 <strong>
                     {translate('promotion_condition')}
                 </strong>
             ),
             renderCell: (params) => {
-                return (<span>
-                     {params.row.status == 'A' ? translate('global_status_active') : '' }
-                     {params.row.status == 'I' ? translate('global_status_inactive') : '' }
-                    </span> 
+                return (
+                <Box p='5px' display='flex' flexDirection='column' justifyContent='space-between' >
+                    <li>{translate('promotion_condition_deposit')} {params.row.minimum_deposit}</li>
+                    <li>{translate('promotion_condition_bonus')} {params.row.maximum_bonus}</li>
+                    <li>{translate('promotion_condition_count')} {params.row.bonus_time_per_day}</li>
+                    <li>{translate('promotion_condition_turnover')} {params.row.turnover}</li>
+                </Box>
                 )
             }
         },
@@ -80,9 +85,9 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList}) => {
             ),
             renderCell: (params) => {
                 return (<span>
-                     {params.row.status == 'A' ? translate('global_status_active') : '' }
-                     {params.row.status == 'I' ? translate('global_status_inactive') : '' }
-                    </span> 
+                    {params.row.status == 'A' ? translate('global_status_active') : ''}
+                    {params.row.status == 'I' ? translate('global_status_inactive') : ''}
+                </span>
                 )
             }
         },

@@ -34,15 +34,16 @@ const Promotion = () => {
 
     const loadValueList_handle = () => {
         try {
-            // axiosPrivate.get('/agency/view-agency')
-            //     .then(res => {
-            //         setValueList(res.data.data);
-            //     })
+            axiosPrivate.get('/promotion/view-promotion')
+                .then(res => {
+                    setValueList(res.data.data);
+                })
 
             // axiosPrivate.get('/agency/commission-type')
             // .then(res => {
             //     setCommissionType(res.data.data);
             // })
+
             setValueList({})
         } catch (err) {
             console.error(err);
@@ -54,44 +55,52 @@ const Promotion = () => {
         setId(id);
         setToggle(true);
 
-        let promotion_name = '';
-        let promotion_desc = '';
+        let name = '';
+        let detail = '';
         let promotion_link = '';
-        let promotion_member_type = '1';
-        let promotion_type = '1';
-        let promotion_value = '';
-        let promotion_image = '';
-        let promotion_condition_deposit = '';
-        let promotion_condition_bonus = '';
-        let promotion_condition_count = '';
-        let promotion_condition_turnover = '';
-        let promotion_daily_type = '1';
-        let promotion_time_type = '1';
-        let promotion_start_time = '';
-        let promotion_end_time = '';
+        let member_type_id = 1;
+        let bonus_type_id = 1;
+        let bonus_amount = '';
+        let image_id = '';
+        let url = '';
+        let minimum_deposit = '';
+        let maximum_bonus = '';
+        let bonus_time_per_day = '';
+        let turnover = '';
+        let bonus_opendate_type_id = 1;
+        let bonus_opentime_type_id = 1;
+        let bonus_opentime_start = '';
+        let bonus_opentime_end = '';
 
         let status = 'A'
         if (id) {
             try {
-                // axiosPrivate.get('/agency/view-agency-byId/' + id).then(res => {
-                //     id = res.data.data[0].id;
-                //     name = res.data.data[0].name;
-                //     commission = res.data.data[0].commission;
-                //     commission_send_company = res.data.data[0].commission_send_company;
-                //     agency_commission_type_id = res.data.data[0].agency_commission_type_id;
-                //     status = res.data.data[0].status;
+                axiosPrivate.get('/promotion/view-promotion-byId/' + id).then(res => {
+                    id = res.data.data[0].id;
+                    name = res.data.data[0].name;
+                    detail = res.data.data[0].detail;
+                    promotion_link = res.data.data[0].promotion_link;
+                    member_type_id = res.data.data[0].member_type_id;
+                    bonus_type_id = res.data.data[0].bonus_type_id;
+                    bonus_amount = res.data.data[0].bonus_amount;
+                    image_id = res.data.data[0].image_id;
+                    url = res.data.data[0].image.image
+                    minimum_deposit = res.data.data[0].minimum_deposit;
+                    maximum_bonus = res.data.data[0].maximum_bonus;
+                    bonus_time_per_day = res.data.data[0].bonus_time_per_day;
+                    turnover = res.data.data[0].turnover;
+                    bonus_opendate_type_id = res.data.data[0].bonus_opendate_type_id;
+                    bonus_opentime_type_id = res.data.data[0].bonus_opentime_type_id;
+                    bonus_opentime_start = res.data.data[0].bonus_opentime_start;
+                    bonus_opentime_end = res.data.data[0].bonus_opentime_end;
 
-                //     setValue({ id, promotion_name, promotion_desc, promotion_link, promotion_member_type,
-                //         promotion_type, promotion_value, promotion_image, promotion_condition_deposit, promotion_condition_bonus,
-                //         promotion_condition_count, promotion_condition_turnover, promotion_daily_type, promotion_time_type,
-                //         promotion_start_time, promotion_end_time, status});
-                // });
+                    status = res.data.data[0].status;
 
-                setValue({
-                    id, promotion_name, promotion_desc, promotion_link, promotion_member_type,
-                    promotion_type, promotion_value, promotion_image, promotion_condition_deposit, promotion_condition_bonus,
-                    promotion_condition_count, promotion_condition_turnover, promotion_daily_type, promotion_time_type,
-                    promotion_start_time, promotion_end_time, status
+                    setValue({
+                        id, name, detail, promotion_link, member_type_id, bonus_type_id,
+                        bonus_amount, image_id, url, minimum_deposit, maximum_bonus, bonus_time_per_day,
+                        turnover, bonus_opendate_type_id, bonus_opentime_type_id, bonus_opentime_start, bonus_opentime_end, status
+                    });
                 });
 
             } catch (err) {
@@ -99,10 +108,9 @@ const Promotion = () => {
             }
         } else {
             setValue({
-                id, promotion_name, promotion_desc, promotion_link, promotion_member_type,
-                promotion_type, promotion_value, promotion_image, promotion_condition_deposit, promotion_condition_bonus,
-                promotion_condition_count, promotion_condition_turnover, promotion_daily_type, promotion_time_type,
-                promotion_start_time, promotion_end_time, status
+                id, name, detail, promotion_link, member_type_id, bonus_type_id,
+                bonus_amount, image_id, url, minimum_deposit, maximum_bonus, bonus_time_per_day,
+                turnover, bonus_opendate_type_id, bonus_opentime_type_id, bonus_opentime_start, bonus_opentime_end, status
             });
 
         }
@@ -111,7 +119,7 @@ const Promotion = () => {
     const postValue_handle = async (value) => {
         try {
             if (value) {
-                let res = await axiosPrivate.post('/agency/create-agency', value)
+                let res = await axiosPrivate.post('/promotion/create-promotion', value)
                 setToggle(false);
                 loadValueList_handle();
                 return [res, null];
@@ -125,7 +133,7 @@ const Promotion = () => {
     const putValue_handle = async (id, value) => {
         try {
             if (value) {
-                let res = await axiosPrivate.put('/agency/update-agency', value)
+                let res = await axiosPrivate.put('/promotion/update-promotion', value)
                 setToggle(false);
                 loadValueList_handle();
                 return [res, null];
@@ -139,7 +147,7 @@ const Promotion = () => {
     const delValue_handle = (id) => {
         try {
             if (id) {
-                axiosPrivate.delete('/agency/delete-agency/' + id)
+                axiosPrivate.delete('/promotion/delete-promotion/' + id)
                     .then(res => {
                         console.log(res);
                         loadValueList_handle();

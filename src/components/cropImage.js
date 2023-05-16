@@ -18,6 +18,7 @@ function getRadianAngle(degreeValue) {
  * @param {number} rotation - optional rotation parameter
  */
 export default async function getCroppedImg(imageSrc, pixelCrop, rotation = 0) {
+
   const image = await createImage(imageSrc);
   const canvas = document.createElement("canvas");
   const ctx = canvas.getContext("2d");
@@ -55,13 +56,31 @@ export default async function getCroppedImg(imageSrc, pixelCrop, rotation = 0) {
   );
 
   // As Base64 string
-  // return canvas.toDataURL('image/jpeg');
+  let fileBase64 = canvas.toDataURL('image/jpeg');
+  let file = dataURLtoFile(fileBase64, imageSrc)
+  console.log(file);
+  return file
 
-  // As a blob
-  return new Promise((resolve) => {
-    canvas.toBlob((file) => {
-      console.log(file);
-      resolve(URL.createObjectURL(file));
-    }, "image/jpeg");
-  });
+  //As a blob
+  // return new Promise((resolve) => {
+  //   canvas.toBlob((file) => {
+  //     console.log(file);
+  //     resolve(URL.createObjectURL(file));
+  //   }, "image/jpeg");
+  // });
+}
+
+function dataURLtoFile(dataurl, filename) {
+ 
+  var arr = dataurl.split(','),
+      mime = arr[0].match(/:(.*?);/)[1],
+      bstr = atob(arr[1]), 
+      n = bstr.length, 
+      u8arr = new Uint8Array(n);
+      
+  while(n--){
+      u8arr[n] = bstr.charCodeAt(n);
+  }
+  
+  return new File([u8arr], filename, {type:mime});
 }

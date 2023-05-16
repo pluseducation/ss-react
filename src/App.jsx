@@ -7,6 +7,8 @@ import Member from './scenes/member';
 import Promotion from './scenes/promotion';
 import User from './scenes/user'
 import Login from './scenes/login';
+import TestOCR from './scenes/login/testOCR';
+
 import Agency from './scenes/agency';
 import Account from './scenes/account';
 import RootAgent from './scenes/rootAgent';
@@ -40,7 +42,7 @@ function App() {
                   <Route path="/member" element={<Member />} />
                   <Route path="/promotion" element={<Promotion />} />
                   <Route path="/user" element={<User />} />
-                  <Route path="/login" element={<Login />} />
+                  <Route path="/login" element={<TestOCR />} />
                   <Route path="/agency" element={<Agency />} />
                   <Route path="/account" element={<Account />} />
                   <Route path="/rootagent" element={<RootAgent />} />

@@ -16,6 +16,13 @@ export default defineConfig({
         changeOrigin: true,
         // rewrite: (path) => path.replace(/^\/api/, ''),
       },
+      '/images': {
+        // target: 'http://27.254.123.203:8444',
+        target: 'http://27.254.123.203:8444',
+        secure : false,
+        changeOrigin: true,
+        // rewrite: (path) => path.replace(/^\/api/, ''),
+      },
     },
   },
   esbuild: {

@@ -163,10 +163,10 @@ export const themeSettings = (mode) => {
         ? {
           // palette values for dark mode
           primary: {
-            main: colors.purpleAccent[500],
+            main: colors.blueAccent[400],
           },
           secondary: {
-            main: colors.blueAccent[500],
+            main: colors.greenAccent[400],
           },
           neutral: {
             dark: colors.grey[700],
@@ -174,16 +174,16 @@ export const themeSettings = (mode) => {
             light: colors.grey[100],
           },
           background: {
-            default: colors.primary[500],
+            default: colors.blueAccent[900],
           },
         }
         : {
           // palette values for light mode
           primary: {
-            main: colors.purpleAccent[400],
+            main: colors.blueAccent[400],
           },
           secondary: {
-            main: colors.blueAccent[400],
+            main: colors.greenAccent[400],
           },
           neutral: {
             dark: colors.grey[700],
@@ -251,7 +251,8 @@ export const themeSettings = (mode) => {
             }
           }
         }
-      }
+      },
+     
     },
   };
 };

@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { ProSidebar, Menu, MenuItem } from 'react-pro-sidebar';
-import { Box, Button, IconButton, Typography, useTheme } from "@mui/material";
+import { Card, Box, Button, IconButton, Typography, useTheme } from "@mui/material";
 import { Link } from "react-router-dom";
 import "react-pro-sidebar/dist/css/styles.css";
 import { tokens } from "../../theme";
@@ -50,7 +50,7 @@ const Sidebar = () => {
     <Box
       sx={{
         "& .pro-sidebar-inner": {
-          background: `${colors.blueAccent[900]} !important`,
+          background: `${colors.primary[500]} !important`,
         },
         "& .pro-icon-wrapper": {
           backgroundColor: "transparent !important",
@@ -59,10 +59,10 @@ const Sidebar = () => {
           padding: "5px 35px 5px 20px !important",
         },
         "& .pro-inner-item:hover": {
-          color: "#9465d1 !important",
+          color: "#79b8ff !important",
         },
         "& .pro-menu-item.active": {
-          color: "#793ec6 !important",
+          color: "#58a6ff !important",
         },
       }}
     >
