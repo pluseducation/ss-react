@@ -22,11 +22,11 @@ const ManageControl = ({ selectedId, loadValue_handle, delValue_handle }) => {
       }} >
         {translate("global_add")}
       </Button>
-      <Button endIcon={<CheckCircleOutlinedIcon />} color="success" onClick={(e) => {
+      {/* <Button endIcon={<CheckCircleOutlinedIcon />} color="success" onClick={(e) => {
         approve_onClick()
       }} >
         {translate("global_approve")}
-      </Button>
+      </Button> */}
       <Button endIcon={<DeleteOutlinedIcon />} color="error" onClick={(e) => {
         if (selectedId) {
           confirm({

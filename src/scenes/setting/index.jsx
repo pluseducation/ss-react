@@ -32,7 +32,7 @@ const Setting = () => {
             </Tabs>
           </Box>
           <TabPanel value={value} index={0}>
-            <General/>
+            {/* <General/> */}
           </TabPanel>
         </Box>
       </Box>

@@ -173,9 +173,9 @@ export const themeSettings = (mode) => {
             main: colors.grey[500],
             light: colors.grey[100],
           },
-          background: {
-            default: colors.blueAccent[900],
-          },
+          // background: {
+          //   default: colors.blueAccent[900],
+          // },
         }
         : {
           // palette values for light mode
@@ -190,14 +190,14 @@ export const themeSettings = (mode) => {
             main: colors.grey[500],
             light: colors.grey[100],
           },
-          background: {
-            default: "#fcfcfc",
-          },
+          // background: {
+          //   default: "#fcfcfc",
+          // },
         }),
     },
     typography: {
       fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-      fontSize: 12,
+      fontSize: 16,
       h1: {
         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
         fontSize: 40,
@@ -220,7 +220,7 @@ export const themeSettings = (mode) => {
       },
       h6: {
         fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
-        fontSize: 14,
+        fontSize: 16,
       },
     },
     components: {
@@ -276,3 +276,33 @@ export const useMode = () => {
   const theme = useMemo(() => createTheme(themeSettings(mode)), [mode]);
   return [theme, colorMode];
 };
+
+
+// typography: {
+//   fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+//   fontSize: 12,
+//   h1: {
+//     fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+//     fontSize: 40,
+//   },
+//   h2: {
+//     fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+//     fontSize: 32,
+//   },
+//   h3: {
+//     fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+//     fontSize: 24,
+//   },
+//   h4: {
+//     fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+//     fontSize: 20,
+//   },
+//   h5: {
+//     fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+//     fontSize: 16,
+//   },
+//   h6: {
+//     fontFamily: ["Source Sans Pro", "sans-serif"].join(","),
+//     fontSize: 14,
+//   },
+// },

@@ -176,7 +176,6 @@ const Member = () => {
         loadValueList_handle();
     }, [])
 
-
     return (
         <Box m={2} >
             <Header title={translate("member_title")} subtitle={translate("member_description")} />

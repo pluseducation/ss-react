@@ -2,137 +2,89 @@ import { useEffect, useState } from "react";
 import Loading from '../../../components/loading'
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../../theme";
-import { Button, Box, Avatar, useTheme } from "@mui/material";
+import { Box, Button, Avatar, useTheme } from "@mui/material";
 import translate from "../../../i18nProvider/translate";
 import NoteAltOutlinedIcon from '@mui/icons-material/NoteAltOutlined';
+import { Padding } from "@mui/icons-material";
+import CheckCircleOutlinedIcon from '@mui/icons-material/CheckCircleOutlined';
+import { useConfirm } from "material-ui-confirm";
 
-const List = ({ setId, setSelectedId, loadValue_handle, valueList }) => {
+const DepositList = ({ setId, setSelectedId, loadValue_handle, valueList, appValue_handle }) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const [selectionModel, setSelectionModel] = useState([]);
-
+    const confirm = useConfirm();
+    
     const columns = [
         {
             field: "id",
-            flex: 0.5,
+            flex: 1,
             renderHeader: () => (
                 <strong>
-                    {translate('member_order')}
+                    {translate('trx_deposit_order')}
                 </strong>
             ),
         },
         {
-            field: "root_agent_id",
+            field: "member_id",
             flex: 1,
             renderHeader: () => (
                 <strong>
-                    {translate('member_root_agent')}
+                    {translate('trx_deposit_member')}
                 </strong>
             ),
             renderCell: (params) => {
-                return (<span>
-                    {params.row.root_agent_detail.root_agent_name}
-                </span>
+                return (
+                    <strong>
+                        {params.row.member.username}
+                    </strong>
                 )
             }
         },
         {
-            field: "agency_id",
+            field: "deposit_source_account",
             flex: 1,
             renderHeader: () => (
                 <strong>
-                    {translate('member_agency')}
-                </strong>
-            ),
-            renderCell: (params) => {
-                return (<span>
-                    {params.row.agency_detail.name}
-                </span>
-                )
-            }
-        },
-        {
-            field: "username",
-            flex: 1,
-            renderHeader: () => (
-                <strong>
-                    {translate('member_username')}
-                </strong>
-            ),
-        },
-        {
-            field: "fname",
-            flex: 1,
-            renderHeader: () => (
-                <strong>
-                    {translate('member_fname')}
-                </strong>
-            ),
-        },
-        {
-            field: "lname",
-            flex: 1,
-            renderHeader: () => (
-                <strong>
-                    {translate('member_lname')}
-                </strong>
-            ),
-        },
-        {
-            field: "telephone",
-            flex: 1,
-            renderHeader: () => (
-                <strong>
-                    {translate('member_telephone')}
-                </strong>
-            ),
-        },
-     
-        {
-            field: "bank_id",
-            flex: 1,
-            renderHeader: () => (
-                <strong>
-                    {translate('member_bank')}
+                    {translate('trx_deposit_source_account')}
                 </strong>
             ),
             renderCell: (params) => {
                 return (
                     <Box display='flex' columnGap={1}>
-                        <Avatar id={params.row.id} src={params.row.bank_detail.logoURL} sx={{ width: 24, height: 24 }} />
+                        <Avatar id={params.row.id} src={params.row.source_bank.logoURL} sx={{ width: 24, height: 24 }} />
                         <Box padding='4px 0px 0px 0px'>
-                        {params.row.bank_detail.bank_short_eng_name}
+                            {params.row.deposit_source_account}
                         </Box>
                     </Box>
                 )
             }
         },
         {
-            field: "bank_account_number",
+            field: "deposit_amount",
             flex: 1,
             renderHeader: () => (
                 <strong>
-                    {translate('member_bank_account_number')}
+                    {translate('trx_deposit_amount')}
                 </strong>
             ),
         },
-        
         {
-            field: "recommender_id",
+            field: "deposit_dest_account",
             flex: 1,
             renderHeader: () => (
                 <strong>
-                    {translate('member_recommender')}
+                    {translate('trx_deposit_dest_account')}
                 </strong>
             ),
             renderCell: (params) => {
-                return (<span>
-                    {params.row.recommender_id == '1' ? translate('member_recommender_1') : ''}
-                    {params.row.recommender_id == '2' ? translate('member_recommender_2') : ''}
-                    {params.row.recommender_id == '3' ? translate('member_recommender_3') : ''}
-                    {params.row.recommender_id == '4' ? translate('member_recommender_4') : ''}
-                    {params.row.recommender_id == '5' ? translate('member_recommender_5') : ''}
-                </span>
+                return (
+                    <Box display='flex' columnGap={1}>
+                        <Avatar id={params.row.id} src={params.row.dest_bank.logoURL} sx={{ width: 24, height: 24 }} />
+                        <Box padding='4px 0px 0px 0px'>
+                            {params.row.deposit_dest_account}
+                        </Box>
+                    </Box>
                 )
             }
         },
@@ -141,7 +93,7 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList }) => {
             flex: 1,
             renderHeader: () => (
                 <strong>
-                    {translate('rootagent_status')}
+                    {translate('trx_deposit_status')}
                 </strong>
             ),
             renderCell: (params) => {
@@ -153,22 +105,55 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList }) => {
             }
         },
         {
-            field: "edit",
+            field: "transaction_status_id",
+            flex: 1,
+            renderHeader: () => (
+                <strong>
+                    {translate('trx_deposit_transaction_status')}
+                </strong>
+            ),
+            renderCell: (params) => {
+                return (<span>
+                    {params.row.transaction_status_id == 1 ? translate('global_status_transaction_approve') : ''}
+                    {params.row.transaction_status_id == 2 ? translate('global_status_transaction_reject') : ''}
+                    {params.row.transaction_status_id == 3 ? translate('global_status_transaction_pending') : ''}
+                </span>
+                )
+            }
+        },
+        {
+            field: "approve",
             flex: 1,
             sortable: false,
             renderHeader: () => (
                 <strong>
-                    {translate('global_edit')}
+                    {translate('global_approve')}
                 </strong>
             ),
             renderCell: (params) => {
                 return (
-                    <Button endIcon={<NoteAltOutlinedIcon />} onClick={(e) => {
-                        setId(params.id)
-                        loadValue_handle(params.id)
-                    }} >
-                        {translate("global_edit")}
-                    </Button>
+                    params.row.transaction_status_id == 3 ?
+                        <Button color="success" endIcon={<CheckCircleOutlinedIcon />} onClick={(e) => {
+                            confirm({
+                                title: translate("alert_confirm_title"),
+                                description: translate("alert_approve_confirm_description"),
+                                cancellationText: translate('global_close'),
+                                confirmationText: translate('global_ok'),
+                                confirmationButtonProps: { color: "primary", variant: "contained" }
+                            })
+                                .then(() => {
+                                    let id = params.row.id;
+                                    let username = params.row.member.username
+                                    let depositAmount = params.row.deposit_amount;
+                                    appValue_handle(id, username, depositAmount)
+                                })
+                                .catch(() => {
+
+                                });
+                        }} >
+                            {translate("global_approve")}
+                        </Button>
+                        : <storage>-</storage>
                 )
             }
         },
@@ -214,4 +199,4 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList }) => {
 
 };
 
-export default List;
+export default DepositList;

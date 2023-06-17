@@ -58,6 +58,7 @@ const UploadImage = (url) => {
             headers: { "Content-Type": "multipart/form-data" },
         }).then(res => {
             formik.values.image_id = res.data.data.id
+            console.log(res.data.data);
             setImageUrl(res.data.data.image)
         });
     }

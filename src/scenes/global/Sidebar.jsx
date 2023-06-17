@@ -18,10 +18,16 @@ import PersonOutlineOutlinedIcon from '@mui/icons-material/PersonOutlineOutlined
 import WorkOutlineOutlinedIcon from '@mui/icons-material/WorkOutlineOutlined';
 import FactCheckOutlinedIcon from '@mui/icons-material/FactCheckOutlined';
 import TravelExploreOutlinedIcon from '@mui/icons-material/TravelExploreOutlined';
+import ExitToAppOutlinedIcon from '@mui/icons-material/ExitToAppOutlined';
+import PriceChangeOutlinedIcon from '@mui/icons-material/PriceChangeOutlined';
+
+import useAuth from '../../hook/useAuth';
+import { useNavigate } from 'react-router-dom';
 
 const Item = ({ title, to, icon, selected, setSelected }) => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
+  const { auth, setAuth } = useAuth();
 
   return (
     <MenuItem
@@ -38,6 +44,28 @@ const Item = ({ title, to, icon, selected, setSelected }) => {
   );
 };
 
+const LogoutItem = ({ title, icon }) => {
+  const theme = useTheme();
+  const colors = tokens(theme.palette.mode);
+  const { auth, setAuth } = useAuth();
+  const navigate = useNavigate();
+
+  return (
+    <MenuItem
+      style={{
+        color: colors.grey[100],
+      }}
+      onClick={(e) => {
+        setAuth({})
+        navigate('/')
+      }}
+      icon={icon}
+    >
+      <Typography>{title}</Typography>
+    </MenuItem>
+  );
+};
+
 const Sidebar = () => {
   const theme = useTheme();
   const colors = tokens(theme.palette.mode);
@@ -45,6 +73,7 @@ const Sidebar = () => {
 
   const [isCollapsed, setIsCollapsed] = useState(false);
   const [selected, setSelected] = useState(translate("global_dashboard"));
+  const { auth, setAuth } = useAuth();
 
   return (
     <Box
@@ -88,7 +117,7 @@ const Sidebar = () => {
                 ml="15px"
               >
                 <Typography variant="h3" color={colors.grey[100]}>
-                  ADMINIS
+                  {auth.roles} {/* ADMINIS */}
                 </Typography>
                 <IconButton onClick={() => {
                     setIsCollapsed(!isCollapsed);
@@ -108,10 +137,10 @@ const Sidebar = () => {
                   fontWeight="bold"
                   sx={{ m: "10px 0 0 0" }}
                 >
-                  Ed Roh
+                  {auth.name}{/* Ed Roh */}
                 </Typography>
                 <Typography variant="h6" color="secondary">
-                  VP Fancy Admin
+                {auth.user}{/* VP Fancy Admin */}
                 </Typography>
               </Box>
             </Box>
@@ -120,7 +149,7 @@ const Sidebar = () => {
           <Box paddingLeft={isCollapsed ? undefined : "10%"}>
             <Item
               title={translate("global_dashboard")}
-              to="/"
+              to="/dashboard"
               icon={<HomeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
@@ -128,7 +157,7 @@ const Sidebar = () => {
 
             <Typography
               variant="h6"
-              color={colors.grey[300]}
+              color={colors.grey[100]}
               sx={{ m: "15px 0 5px 20px" }}
             >
               {translate("global_menu")}
@@ -137,6 +166,13 @@ const Sidebar = () => {
               title={translate("global_transaction")}
               to="/transaction"
               icon={<AssignmentOutlinedIcon />}
+              selected={selected}
+              setSelected={setSelected}
+            />
+             <Item
+              title={translate("global_bonus")}
+              to="/bonus"
+              icon={<PriceChangeOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
             />
@@ -180,10 +216,10 @@ const Sidebar = () => {
 
             <Typography
               variant="h6"
-              color={colors.grey[300]}
+              color={colors.grey[100]}
               sx={{ m: "15px 0 5px 20px" }}
             >
-              {/* {translate("global_system")} */}
+              {translate("global_system")}
             </Typography>
             <Item
               title={translate("global_setting")}
@@ -199,19 +235,23 @@ const Sidebar = () => {
               selected={selected}
               setSelected={setSelected}
             />
-            <Item
+            {/* <Item
               title={translate("global_role")}
               to="/pie"
               icon={<WorkOutlineOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
-            />
-            <Item
-              title={translate("global_operation")}
+            /> */}
+            {/* <Item
+              title={translate("global_test_login")}
               to="/login"
               icon={<FactCheckOutlinedIcon />}
               selected={selected}
               setSelected={setSelected}
+            /> */}
+            <LogoutItem
+              title={translate("global_logout")}
+              icon={<ExitToAppOutlinedIcon />}
             />
           </Box>
         </Menu>

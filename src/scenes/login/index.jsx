@@ -13,6 +13,10 @@ import AccountCircleIcon from '@mui/icons-material/AccountCircle';
 import LockIcon from '@mui/icons-material/Lock';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import { useNavigate } from 'react-router-dom';
+import Alert from '@mui/material/Alert';
+import AlertTitle from '@mui/material/AlertTitle';
+import Stack from '@mui/material/Stack';
 
 const Login = () => {
 
@@ -20,27 +24,33 @@ const Login = () => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const [showPassword, setShowPassword] = useState(false);
+    const [validateForm, SetValidateForm] = React.useState();
+    const navigate = useNavigate();
 
     let username = 'ssadmin1'
     let password = 'p@ssw0rd'
     let value = { username, password }
 
-    const handleFormSubmit = (value) => {
-
-        GetLogin(value.username, value.password).then((value) => {
-            let user = value.data.user.username;
-            let accessToken = value.data.token.access_token;
+    const handleFormSubmit = async (value) => {
+        try {
+            let res = await GetLogin(value.username, value.password);
+            let user = res.data.user.username;
+            let name = res.data.user.name;
+            let accessToken = res.data.token.access_token;
             let pwd = '';
-            let roles = value.data.user.role_id;
-            console.log(value);
-            setAuth({ user, pwd, roles, accessToken });
-        });
-
+            let roles = res.data.user.role_id;
+            console.log(res);
+            setAuth({ user, name, pwd, roles, accessToken });
+            navigate('/dashboard')
+        } catch (err) {
+            let res = err.response.data;
+            SetValidateForm(res.message);
+        }
     };
 
     const handleTogglePasswordVisibility = () => {
         setShowPassword((prevShowPassword) => !prevShowPassword);
-      };
+    };
 
     return (
         <Box flexGrow={1}
@@ -50,10 +60,10 @@ const Login = () => {
             height='100vh'
             justifyContent='center'
             alignItems='center'
-            
-            // sx={{
-            //     background: colors.blueAccent[600]
-            // }}
+
+        // sx={{
+        //     background: colors.blueAccent[600]
+        // }}
         >
 
             <Formik
@@ -112,7 +122,6 @@ const Login = () => {
                                 name="password"
                                 variant='outlined'
                                 fullWidth
-                                backgroundColor='black'
                                 error={!!touched.password && !!errors.password}
                                 helperText={touched.password && errors.password}
                                 InputProps={{
@@ -139,7 +148,18 @@ const Login = () => {
                             >
                                 Sign In
                             </Button>
+
+                            {validateForm &&
+                            <Box display="flex" justifyContent="end">
+                                <Stack sx={{ width: '100%' }}>
+                                    <Alert id='alert' severity="error">
+                                        <AlertTitle id={'title'} >{validateForm}</AlertTitle>
+                                    </Alert>
+                                </Stack>
+                            </Box>
+                        }
                         </Box>
+                      
 
                     </form>
                 )}

@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import Loading from '../../../components/loading'
 import { DataGrid, GridToolbar } from "@mui/x-data-grid";
 import { tokens } from "../../../theme";
-import { Button, useTheme } from "@mui/material";
+import { Button, Link, Box, useTheme } from "@mui/material";
 import translate from "../../../i18nProvider/translate";
 import NoteAltOutlinedIcon from '@mui/icons-material/NoteAltOutlined';
 
-const List = ({ setId, setSelectedId, loadValue_handle, valueList}) => {
+const List = ({ setId, setSelectedId, loadValue_handle, valueList }) => {
     const theme = useTheme();
     const colors = tokens(theme.palette.mode);
     const [selectionModel, setSelectionModel] = useState([]);
@@ -64,6 +64,45 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList}) => {
             }
         },
         {
+            field: "apply_link",
+            flex: 1,
+            renderHeader: () => (
+                <strong>
+                    {translate('agency_apply_link')}
+                </strong>
+            ),
+            renderCell: (params) => {
+                return (
+                <Box>
+                    <Link color="secondary" 
+                        // href={ 'http://8.138.57.192:8443/register?agencyName=' + params.row.name} 
+                        href={'http://8.138.57.192:8443/register?agencyName=' + params.row.name } 
+                        underline="hover" 
+                        target="_blank"
+           
+                        >
+                        Link
+                    </Link>
+                </Box>
+                )
+            }
+        },
+        {
+            field: "report_link",
+            flex: 1,
+            renderHeader: () => (
+                <strong>
+                    {translate('agency_report_link')}
+                </strong>
+            ),
+            renderCell: (params) => {
+                return (<Link color="secondary" href="#" underline="hover" target="_blank" >
+                    Link
+                </Link>
+                )
+            }
+        },
+        {
             field: "status",
             flex: 1,
             renderHeader: () => (
@@ -73,9 +112,9 @@ const List = ({ setId, setSelectedId, loadValue_handle, valueList}) => {
             ),
             renderCell: (params) => {
                 return (<span>
-                     {params.row.status == 'A' ? translate('global_status_active') : '' }
-                     {params.row.status == 'I' ? translate('global_status_inactive') : '' }
-                    </span> 
+                    {params.row.status == 'A' ? translate('global_status_active') : ''}
+                    {params.row.status == 'I' ? translate('global_status_inactive') : ''}
+                </span>
                 )
             }
         },

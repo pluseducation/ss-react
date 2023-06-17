@@ -18,7 +18,7 @@ const Topbar = ({locale, setLocale}) => {
   const colorMode = useContext(ColorModeContext);
 
   const changeLocate = () => {
-
+    console.log(locale);
     if(locale == LOCALES.ENGLISH){
         setLocale(LOCALES.THAILAND)
     } else if ( locale == LOCALES.THAILAND) {
